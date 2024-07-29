@@ -1,0 +1,4 @@
+#虚拟环境
+myproject
+db.sqlite3
+__pycache__
