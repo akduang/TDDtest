@@ -11,7 +11,9 @@ class NewVisitorTest(unittest.TestCase):
         #她去看了这个应用的首页
         self.browser.get('http://localhost:8000')
         #她注意到网页的标题和头部都包含“To-Do”这个词
+        print(self.browser.title)
         self.assertIn('To-Do',self.browser.title)
+        # print(self.browser.title)
         self.fail('Finish the test!')
         #应用邀请她输入一个待办事项
         #她在一个文本框中输入了“Buy peacock feathers”（购买孔雀）
@@ -36,7 +38,7 @@ if __name__=='__main__':
 # browser.get('http://localhost:8000')
 
 #她注意到网页的标题和头部都包含“To-Do”这个词
-assert 'To-Do' in browser.title, "Browser title was" + browser
+# assert 'To-Do' in browser.title, "Browser title was" + browser
 #应用邀请她输入一个待办事项
 #她在一个文本框中输入了“Buy peacock feathers”（购买孔雀）
 #伊迪斯的爱好是使用假蝇做饵钓鱼
@@ -52,4 +54,4 @@ assert 'To-Do' in browser.title, "Browser title was" + browser
 #她访问那个URL，发现她的待办事项列表还在
 #她很满意，去睡觉了
 
-browser.quit()
+# browser.quit()
