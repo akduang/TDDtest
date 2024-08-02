@@ -38,19 +38,30 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
         table = self.browser.find_element(By.ID,'id_list_table')
         rows = table.find_elements(By.TAG_NAME,'tr')
+        self.assertIn('1:Buy peacock feathers', [row.text for row in rows])
         self.assertTrue(
             any(row.text == '1:Buy peacock feathers' for row in rows),
-            "New to-do item did not appear in table"
+            f"New to-do item did not appear in table.Contents were:\n{table.text}"
         )
         #页面中又显示了一个文本框，可以输入其他的待办事项
-
-
         #她输入了“Use peacock feathers to make a fly”
         #伊迪斯做事很有条理
+        inputbox = self.browser.find_element(By.ID, 'id_new_item')
+        inputbox.send_keys('Use peacock feathers to make a fly')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
         #页面再次更新，她的清单中显示了这两个待办事项
+        table = self.browser.find_element(By.ID, 'id_list_table')
+        rows = table.find_elements(By.TAG_NAME,'tr')
+        self.assertIn('1:Buy peacock feathers', [row.text for row in rows])
+        self.assertIn(
+            '2:Use peacock feathers to make a fly',
+            [row.text for row in rows]
+        )
         #伊迪斯想知道这个网站是否会记住她的清单
         #她看到网站为她生成了一个唯一的URL
         #而且页面有一些文字解说这个功能
+        self.fail('Finish the test')
         #她访问那个URL，发现她的待办事项列表还在
         #她很满意，去睡觉了
 if __name__=='__main__':
